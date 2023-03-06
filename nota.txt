@@ -1,0 +1,33 @@
+para crear proyecto usamos los comandos
+
+laravel new ProjectName
+compose create-project laravel/laravel projectName
+
+
+controller
+models
+factories
+migration
+seeders
+routes-Api
+
+
+Http{
+    controller,
+    middleware,
+    kernel.php
+}
+
+Models{
+    user.php
+}
+
+DataBase{
+    factories,
+    seeders,
+    migration
+}
+
+
+para levantar el proyecto usamos los comandos
+Php artisan serve
