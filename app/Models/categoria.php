@@ -10,6 +10,10 @@ class categoria extends Model
     use HasFactory;
 
     protected $fillable = [
-        'categoria'
+        'Type_categoria'
     ];
+
+    public function productos(){
+        return $this->hasMany('App\Models\Product');
+    }
 }

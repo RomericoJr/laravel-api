@@ -10,16 +10,16 @@ class MarcaController extends Controller
     //
 
     public function addMarca(Request $request){
-        $marca = Marca::create($request->all());
+        $marca = marca::create($request->all());
         return response($marca,201);
     }
 
     public function getMarca(){
-        return response()->json(Marca::all(),200);
+        return response()->json(marca::all(),200);
     }
 
     public function getMarcaId($id){
-        $marcas = Marca::find($id);
+        $marcas = marca::find($id);
 
         if(is_null($marcas)){
             return response()->json(['mensaje'=> 'Marca no encontrada'], 404);
@@ -29,7 +29,7 @@ class MarcaController extends Controller
 
     public function deleteMarca(Request $request, $id)
     {
-        $marcas = Marca::find($id);
+        $marcas = marca::find($id);
         if(is_null($marcas)){
             return response()->json(['mensaje'=> 'Marca no encontrada'], 404);
         }

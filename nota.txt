@@ -1,7 +1,7 @@
 para crear proyecto usamos los comandos
 
 laravel new ProjectName
-compose create-project laravel/laravel projectName
+composer create-project laravel/laravel projectName
 
 
 controller

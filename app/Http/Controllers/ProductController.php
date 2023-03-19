@@ -2,12 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categoria;
+use App\Models\marca;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
     //
+
+    public function getProductMore()
+    {
+        $products = Product::where('estado', "=", '1')
+                    ->addSelect(
+            [
+                'marca'=> marca::select('Type_marca')
+                ->whereColumn('marca_id','id' )
+            ]
+        )->addSelect(
+            [
+                'categoria'=> categoria::select('Type_categoria')
+                ->whereColumn('categoria_id','id' )
+            ]
+        )->get();
+
+        return response()->json($products, 200);
+    }
+
+    public function getProductMoreById($id)
+    {
+        $product = Product::find($id)->addSelect(
+            [
+                'marca'=> marca::select('Type_marca')
+                ->whereColumn('marca_id','id')
+            ]
+        )->addSelect(
+            [
+                'categoria'=> categoria::select('Type_categoria')
+                ->whereColumn('categoria_id','id' )
+            ]
+        )->get();
+
+        // if($product){
+        //     return response()->json(['message' => 'Producto si llega'],200);
+        // }
+
+        if(is_null($product)){
+            return response()->json(['message' => 'Contenido no encontrado'],404);
+        }
+
+        return response()->json($product, 200);
+    }
+
 
     public function addProduct(Request $request){
         $product = Product::create($request->all());
