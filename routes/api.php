@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\roleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -87,3 +88,11 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::post('logout', [AuthController::class,'logout']);
     Route::get('userProfile',[AuthController::class,'userProfile']);
 });
+
+
+//Role
+Route::post('addRole',[roleController::class,'addRole']);
+Route::get('getRole',[roleController::class,'getRole']);
+Route::get('getRoleId/{id}',[roleController::class,'getRoleId']);
+Route::delete('deleteRole/{id}',[roleController::class,'deleteRole']);
+Route::put('updateRole/{id}',[roleController::class,'updateRole']);
