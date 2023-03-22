@@ -18,12 +18,13 @@ class ProductFactory extends Factory
     {
         return [
         'name' => fake()->sentence(2),
-        'categoria' =>fake()->sentence(2),
-        'marca'=> fake()->sentence(2),
         'descripcion'=>fake()->paragraph(),
-        'precio'=>fake()->randomNumber(),
+        'marca_id'=> fake()->randomNumber(1,20),
+        'categoria_id' =>fake()->randomNumber(1,20),
+        'precio'=>fake()->randomNumber(1, 50000),
         'stock'=>fake()->randomNumber(),
-        'UrlImage'=>fake()->url(),
+        // 'UrlImage'=>fake()->url(),
+        'UrlImage'=>'https://http2.mlstatic.com/D_NQ_NP_827235-MLA45015614165_022021-V.jpg',
         'estado'=>1,
         ];
     }

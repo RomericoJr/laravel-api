@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -21,7 +22,14 @@ class AuthController extends Controller
                 ->json(['message'=>'Unauthorized'],401);
         }
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        $user = User::where('email', $request['email'])
+                ->addSelect(
+                    [
+                        'rol' =>Role::select('name')
+                        ->whereColumn('rol_id','id')
+                    ]
+                )
+                ->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
         $cookie = cookie('cookie_token', $token,60 *24);
